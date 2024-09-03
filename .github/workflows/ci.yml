@@ -600,7 +600,7 @@ jobs:
         run: sudo apt-get --assume-yes install python3-wheel python3-setuptools python3-pip
       - name: Install meson and ninja
         run: sudo pip3 install meson ninja PyYAML
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: rizin-src.tar.xz
       - name: Extract source tarball
@@ -759,7 +759,7 @@ jobs:
     env:
       RZPIPE_TESTS: "rz-pipe-py rz-pipe-go"
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: rizin-src.tar.xz
       - name: Extract source tarball
@@ -786,7 +786,7 @@ jobs:
     needs: [test-tarball]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: rizin-src.tar.xz
       - name: Extract source tarball
@@ -834,7 +834,7 @@ jobs:
     steps:
       - name: Install pkg-config with Homebrew
         run: brew install pkg-config
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: rizin.pkg
           path: ./
@@ -872,7 +872,7 @@ jobs:
         shell: pwsh
         run: echo "branch=$(python sys/version.py)" >> $Env:GITHUB_OUTPUT
         id: extract_version
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: rizin_installer-${{ matrix.name }}-${{ steps.extract_version.outputs.branch }}
           path: ./
@@ -937,7 +937,7 @@ jobs:
           release_name: Release ${{ steps.extract_version.outputs.branch }}
           draft: true
           prerelease: false
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
       - name: Display structure of downloaded files
         run: ls -R
       - name: Upload rizin src tarball
